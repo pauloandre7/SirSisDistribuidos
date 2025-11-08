@@ -5,7 +5,8 @@ import org.apache.commons.math3.ode.FirstOrderDifferentialEquations;
 /**
  * @author pauloandre7
  * 
- * Essa classe é para implementar a interface do solve de derivadas da apache.
+ * Essa classe é para implementar a interface do solver de derivadas da apache.
+ * Aqui estão alocadas as equações do modelo SIR que o solver terá que resolver.
  * 
  * * EQUAÇÕES do Sistema:
  * dS/dt -->  -taxaContagio * S * I / popTotal
