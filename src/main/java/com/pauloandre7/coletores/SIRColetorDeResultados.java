@@ -1,4 +1,4 @@
-package com.pauloandre7.sequencial;
+package com.pauloandre7.coletores;
 
 import java.util.ArrayList;
 import java.util.List;
