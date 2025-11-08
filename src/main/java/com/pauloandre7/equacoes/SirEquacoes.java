@@ -1,4 +1,4 @@
-package com.pauloandre7.sequencial;
+package com.pauloandre7.equacoes;
 
 import org.apache.commons.math3.ode.FirstOrderDifferentialEquations;
 
