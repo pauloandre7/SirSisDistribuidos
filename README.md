@@ -28,7 +28,7 @@
 
 | Autor | Autora | Autor |
 | :---: | :---: | :---: |
-| [<img loading="lazy" src="https://avatars.githubusercontent.com/u/147359503?v=4" width=115><br><sub>Paulo André Oliveira da Silva</sub>](https://github.com/pauloandre7) | [<img loading="lazy" src="https://avatars.githubusercontent.com/u/85962221?v=4" width=115><br><sub>Maria Fernanda Leal</sub>](https://github.com/mariaferleal) | [<img loading="lazy" src="assets/placeholdes_perfil.png" width=115><br><sub>Kenji Kato</sub>]() |
+| [<img loading="lazy" src="https://avatars.githubusercontent.com/u/147359503?v=4" width=115><br><sub>Paulo André Oliveira da Silva</sub>](https://github.com/pauloandre7) | [<img loading="lazy" src="https://avatars.githubusercontent.com/u/85962221?v=4" width=115><br><sub>Maria Fernanda Leal</sub>](https://github.com/mariaferleal) | [<img loading="lazy" src="assets/placeholder_perfil.png" width=115><br><sub>Kenji Kato</sub>]() |
 
 <h2>Licença</h2>
 <p>
