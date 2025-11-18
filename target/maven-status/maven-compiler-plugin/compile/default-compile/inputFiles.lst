@@ -1,10 +1,10 @@
-C:\Users\ablue\OneDrive\Documentos\UTFPR\Sistemas Distribuidos\Clone Trabalho Final\SirSisDistribuidos\src\main\java\com\pauloandre7\App.java
-C:\Users\ablue\OneDrive\Documentos\UTFPR\Sistemas Distribuidos\Clone Trabalho Final\SirSisDistribuidos\src\main\java\com\pauloandre7\coletores\SIRColetorDeResultados.java
-C:\Users\ablue\OneDrive\Documentos\UTFPR\Sistemas Distribuidos\Clone Trabalho Final\SirSisDistribuidos\src\main\java\com\pauloandre7\coletores\SISColetorDeResultados.java
-C:\Users\ablue\OneDrive\Documentos\UTFPR\Sistemas Distribuidos\Clone Trabalho Final\SirSisDistribuidos\src\main\java\com\pauloandre7\distribuido\ClienteRMI.java
-C:\Users\ablue\OneDrive\Documentos\UTFPR\Sistemas Distribuidos\Clone Trabalho Final\SirSisDistribuidos\src\main\java\com\pauloandre7\distribuido\ISimulacaoRemota.java
-C:\Users\ablue\OneDrive\Documentos\UTFPR\Sistemas Distribuidos\Clone Trabalho Final\SirSisDistribuidos\src\main\java\com\pauloandre7\distribuido\ServidorRMI.java
-C:\Users\ablue\OneDrive\Documentos\UTFPR\Sistemas Distribuidos\Clone Trabalho Final\SirSisDistribuidos\src\main\java\com\pauloandre7\distribuido\SimulacaoRemotaImpl.java
-C:\Users\ablue\OneDrive\Documentos\UTFPR\Sistemas Distribuidos\Clone Trabalho Final\SirSisDistribuidos\src\main\java\com\pauloandre7\equacoes\SirEquacoes.java
-C:\Users\ablue\OneDrive\Documentos\UTFPR\Sistemas Distribuidos\Clone Trabalho Final\SirSisDistribuidos\src\main\java\com\pauloandre7\equacoes\SisEquacoes.java
-C:\Users\ablue\OneDrive\Documentos\UTFPR\Sistemas Distribuidos\Clone Trabalho Final\SirSisDistribuidos\src\main\java\com\pauloandre7\sequencial\ModelosSequenciais.java
+/home/pauloandre7/Documents/sistemas-distribuidos/SirSisDistribuidos/src/main/java/com/pauloandre7/App.java
+/home/pauloandre7/Documents/sistemas-distribuidos/SirSisDistribuidos/src/main/java/com/pauloandre7/coletores/SIRColetorDeResultados.java
+/home/pauloandre7/Documents/sistemas-distribuidos/SirSisDistribuidos/src/main/java/com/pauloandre7/coletores/SISColetorDeResultados.java
+/home/pauloandre7/Documents/sistemas-distribuidos/SirSisDistribuidos/src/main/java/com/pauloandre7/distribuido/ClienteRMI.java
+/home/pauloandre7/Documents/sistemas-distribuidos/SirSisDistribuidos/src/main/java/com/pauloandre7/distribuido/ISimulacaoRemota.java
+/home/pauloandre7/Documents/sistemas-distribuidos/SirSisDistribuidos/src/main/java/com/pauloandre7/distribuido/ServidorRMI.java
+/home/pauloandre7/Documents/sistemas-distribuidos/SirSisDistribuidos/src/main/java/com/pauloandre7/distribuido/SimulacaoRemotaImpl.java
+/home/pauloandre7/Documents/sistemas-distribuidos/SirSisDistribuidos/src/main/java/com/pauloandre7/equacoes/SirEquacoes.java
+/home/pauloandre7/Documents/sistemas-distribuidos/SirSisDistribuidos/src/main/java/com/pauloandre7/equacoes/SisEquacoes.java
+/home/pauloandre7/Documents/sistemas-distribuidos/SirSisDistribuidos/src/main/java/com/pauloandre7/sequencial/ModelosSequenciais.java
