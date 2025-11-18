@@ -17,15 +17,15 @@ public class App
         int escolha = -1;
 
         while(escolha != 0){
-            System.out.println("|========================================================|");
-            System.out.println("|            SirSisDistribuidos - Menu Principal         |");
-            System.out.println("|========================================================|");
-            System.out.println("| [1] Simulação Sequencial (SIR/SIS)                     |");
-            System.out.println("| [2] Simulação Paralela (NÃO IMPLEMENTADO)              |");
-            System.out.println("| [3] Simulação Distribuída (Cliente RMI)                |");
+            System.out.println("|=====================================================================|");
+            System.out.println("|                  SirSisDistribuidos - Menu Principal                |");
+            System.out.println("|=====================================================================|");
+            System.out.println("| [1] Simulação Sequencial (SIR/SIS)                                  |");
+            System.out.println("| [2] Simulação Paralela (NÃO IMPLEMENTADO)                           |");
+            System.out.println("| [3] Simulação Distribuída (Cliente RMI)                             |");
             System.out.println("| [4] Iniciar Servidor RMI (A ser executado em outra máquina/terminal)|");
-            System.out.println("| [0] SAIR                                               |");
-            System.out.println("|========================================================|");
+            System.out.println("| [0] SAIR                                                            |");
+            System.out.println("|=====================================================================|");
             System.out.print("| Escolha: ");
             
             if (scanner.hasNextInt()) {
@@ -37,7 +37,7 @@ public class App
                 continue;
             }
             
-            System.out.println("|--------------------------------------------------------|");
+            System.out.println("|---------------------------------------------------------------------|");
             switch (escolha) {
                 case 1:
                     ModelosSequenciais.main(new String[]{});
@@ -53,12 +53,12 @@ public class App
                     com.pauloandre7.distribuido.ServidorRMI.main(new String[]{});
                     break;
                 case 0:
-                    System.out.println("| >> Encerrando o programa.                              |");
+                    System.out.println("| >> Encerrando o programa.                                           |");
                     break;
                 default:
                     System.out.println("| Opção Inválida!");
             }
-            System.out.println("|--------------------------------------------------------|");
+            System.out.println("|---------------------------------------------------------------------|");
         }
         scanner.close();
     }

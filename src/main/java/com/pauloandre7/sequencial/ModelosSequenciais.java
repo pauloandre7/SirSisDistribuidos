@@ -212,9 +212,9 @@ public class ModelosSequenciais {
             // Linha responsavel pela simulaçao
             solver.integrate(equacoesSis, tempoInicial, estadoInicial, tempoFinal, estadoFinal);
         } catch(NumberIsTooSmallException numberExc){
-            System.out.println("-----------------------------------------------");
-            System.out.println(">> A taxa de contágio informada é muito alta.");
-            System.out.println("-----------------------------------------------");
+            System.out.println("|-----------------------------------------------|");
+            System.out.println("| >> A taxa de contágio informada é muito alta. |");
+            System.out.println("|-----------------------------------------------|");
             numberExc.printStackTrace();
 
         }
@@ -226,7 +226,7 @@ public class ModelosSequenciais {
 
         // Ao final, estadoFinal conterá os valores de S, I, R no tempo 100.
         System.out.println("|--------------------------------------------------------|");
-        System.out.println("| >> Parâmetros da Simulação: ");
+        System.out.println("| PARÂMETROS DA SIMULAÇÃO: ");
         System.out.println("| População: "+popTotal+" \n| Taxa de Contagio: "+taxaContagio+" \n| Taxa de Recuperação:"+taxaRecuperacao);
         System.out.println("|\n| >>  RESULTADOS DA SIMULAÇÃO:");
         System.out.printf("| INICIAL (DIA %.1f) -> S: %.2f, I: %.2f \n", tempoInicial, 
@@ -260,7 +260,7 @@ public class ModelosSequenciais {
 
         while(escolha != 0){
             System.out.println("|========================================================|");
-            System.out.println("|            Modelos de Simulação SIR e SIS              |");
+            System.out.println("|            Simulação SIR e SIS - SEQUENCIAL            |");
             System.out.println("|========================================================|");
             System.out.println("| [1] Modelo SIR                                         |");
             System.out.println("| [2] Modelo SIS                                         |");

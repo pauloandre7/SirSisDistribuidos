@@ -20,7 +20,7 @@ public class ClienteRMI {
             // 2. Procura o objeto remoto pelo nome
             ISimulacaoRemota stub = (ISimulacaoRemota) registry.lookup("SimulacaoRemota");
             
-            System.out.println("Objeto remoto encontrado. Executando simulação SIR remota...");
+            System.out.println("| >> Objeto remoto encontrado. Executando simulação SIR remota...");
             
             // 3. Chama o método remoto (Simulação SIR com dados de exemplo)
             double popTotal = 1000.0;
@@ -32,25 +32,25 @@ public class ClienteRMI {
             
             List<List<Double>> resultadosSIR = stub.simularSIR(popTotal, infectadosInicio, taxaContagio, taxaRecuperacao, tempoInicial, tempoFinal);
             
-            System.out.println("Simulação SIR remota concluída. Número de pontos de dados: " + resultadosSIR.get(0).size());
-            System.out.println("Exemplo de resultado final (S, I, R): " + 
-                                resultadosSIR.get(1).get(resultadosSIR.get(0).size() - 1) + ", " +
-                                resultadosSIR.get(2).get(resultadosSIR.get(0).size() - 1) + ", " +
+            System.out.println("| Simulação SIR remota concluída. Número de pontos de dados: " + resultadosSIR.get(0).size());
+            System.out.printf("| Exemplo de resultado final (S, I, R): %.2f, %.2f, %.2f \n", 
+                                resultadosSIR.get(1).get(resultadosSIR.get(0).size() - 1),
+                                resultadosSIR.get(2).get(resultadosSIR.get(0).size() - 1),
                                 resultadosSIR.get(3).get(resultadosSIR.get(0).size() - 1));
 
-            System.out.println("\nExecutando simulação SIS remota...");
+            System.out.println("\n| >> Executando simulação SIS remota...");
 
             // 4. Chama o método remoto (Simulação SIS com dados de exemplo)
             List<List<Double>> resultadosSIS = stub.simularSIS(popTotal, infectadosInicio, taxaContagio, taxaRecuperacao, tempoInicial, tempoFinal);
 
-            System.out.println("Simulação SIS remota concluída. Número de pontos de dados: " + resultadosSIS.get(0).size());
-            System.out.println("Exemplo de resultado final (S, I): " + 
-                                resultadosSIS.get(1).get(resultadosSIS.get(0).size() - 1) + ", " +
+            System.out.println("| Simulação SIS remota concluída. Número de pontos de dados: " + resultadosSIS.get(0).size());
+            System.out.printf("| Exemplo de resultado final (S, I): %.2f, %.2f \n",
+                                resultadosSIS.get(1).get(resultadosSIS.get(0).size() - 1),
                                 resultadosSIS.get(2).get(resultadosSIS.get(0).size() - 1));
             
         } catch (Exception e) {
-            System.err.println("Erro no Cliente RMI: " + e.toString());
-            System.err.println("Certifique-se de que o Servidor RMI está em execução.");
+            System.err.println("| >> Erro no Cliente RMI: " + e.toString());
+            System.err.println("| >> Certifique-se de que o Servidor RMI está em execução.");
             e.printStackTrace();
         }
     }

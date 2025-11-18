@@ -21,11 +21,11 @@ public class ServidorRMI {
             // 3. Registra o objeto remoto no Registry com um nome
             registry.rebind("SimulacaoRemota", objRemoto);
             
-            System.out.println("Servidor RMI de Simulação SIR/SIS pronto na porta 1099.");
-            System.out.println("Aguardando chamadas de clientes...");
+            System.out.println("| >> Servidor RMI de Simulação SIR/SIS pronto na porta 1099.");
+            System.out.println("| >> Aguardando chamadas de clientes...");
             
         } catch (Exception e) {
-            System.err.println("Erro no Servidor RMI: " + e.toString());
+            System.err.println("| >> Erro no Servidor RMI: " + e.toString());
             e.printStackTrace();
         }
     }
