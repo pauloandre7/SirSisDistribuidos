@@ -1,4 +1,4 @@
-package com.pauloandre7.infra.distribuido;
+package com.grupo5.infra.distribuido;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -10,10 +10,10 @@ import org.apache.commons.math3.ode.FirstOrderDifferentialEquations;
 import org.apache.commons.math3.ode.FirstOrderIntegrator;
 import org.apache.commons.math3.ode.nonstiff.DormandPrince54Integrator;
 
-import com.pauloandre7.application.coletores.SIRColetorDeResultados;
-import com.pauloandre7.application.coletores.SISColetorDeResultados;
-import com.pauloandre7.domain.equacoes.SirEquacoes;
-import com.pauloandre7.domain.equacoes.SisEquacoes;
+import com.grupo5.application.coletores.SIRColetorDeResultados;
+import com.grupo5.application.coletores.SISColetorDeResultados;
+import com.grupo5.domain.equacoes.SirEquacoes;
+import com.grupo5.domain.equacoes.SisEquacoes;
 
 /**
  * Implementação da Interface Remota ISimulacaoRemota.

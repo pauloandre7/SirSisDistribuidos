@@ -1,4 +1,4 @@
-package com.pauloandre7.infra.distribuido;
+package com.grupo5.infra.distribuido;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;

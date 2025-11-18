@@ -1,4 +1,4 @@
-package com.pauloandre7.domain.equacoes;
+package com.grupo5.domain.equacoes;
 
 import org.apache.commons.math3.exception.DimensionMismatchException;
 import org.apache.commons.math3.exception.MaxCountExceededException;

@@ -1,9 +1,9 @@
-package com.pauloandre7;
+package com.grupo5;
 
 import java.util.Scanner;
 
-import com.pauloandre7.infra.distribuido.ClienteRMI;
-import com.pauloandre7.infra.sequencial.ModelosSequenciais;
+import com.grupo5.infra.distribuido.ClienteRMI;
+import com.grupo5.infra.sequencial.ModelosSequenciais;
 
 /**
  * Classe principal do projeto SirSisDistribuidos.
@@ -50,7 +50,7 @@ public class App
                     break;
                 case 4:
                     System.out.println("| >> Iniciando Servidor RMI. Pressione Ctrl+C para parar.|");
-                    com.pauloandre7.infra.distribuido.ServidorRMI.main(new String[]{});
+                    com.grupo5.infra.distribuido.ServidorRMI.main(new String[]{});
                     break;
                 case 0:
                     System.out.println("| >> Encerrando o programa.                                           |");

@@ -1,4 +1,4 @@
-package com.pauloandre7.application.coletores;
+package com.grupo5.application.coletores;
 
 import java.util.ArrayList;
 import java.util.List;

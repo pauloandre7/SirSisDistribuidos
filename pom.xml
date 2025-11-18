@@ -4,7 +4,7 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.pauloandre7</groupId>
+  <groupId>com.grupo5</groupId>
   <artifactId>SirSisDistribuidos</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
@@ -69,7 +69,7 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>3.1.0</version>
         <configuration>
-          <mainClass>com.pauloandre7.App</mainClass>
+          <mainClass>com.grupo5.App</mainClass>
         </configuration>
       </plugin>
 

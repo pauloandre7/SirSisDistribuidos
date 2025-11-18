@@ -1,4 +1,4 @@
-package com.pauloandre7.infra.sequencial;
+package com.grupo5.infra.sequencial;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +14,10 @@ import org.knowm.xchart.SwingWrapper;
 import org.knowm.xchart.XYChart;
 import org.knowm.xchart.XYChartBuilder;
 
-import com.pauloandre7.application.coletores.SIRColetorDeResultados;
-import com.pauloandre7.application.coletores.SISColetorDeResultados;
-import com.pauloandre7.domain.equacoes.SirEquacoes;
-import com.pauloandre7.domain.equacoes.SisEquacoes;
+import com.grupo5.application.coletores.SIRColetorDeResultados;
+import com.grupo5.application.coletores.SISColetorDeResultados;
+import com.grupo5.domain.equacoes.SirEquacoes;
+import com.grupo5.domain.equacoes.SisEquacoes;
 
 /**
  * @author pauloandre7
