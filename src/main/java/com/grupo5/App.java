@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.grupo5.infra.distribuido.ClienteRMI;
 import com.grupo5.infra.sequencial.ModelosSequenciais;
+import com.grupo5.util.ConsoleUtil;
 
 /**
  * Classe principal do projeto SirSisDistribuidos.
@@ -40,12 +41,14 @@ public class App
             System.out.println("|---------------------------------------------------------------------|");
             switch (escolha) {
                 case 1:
+                    ConsoleUtil.clearConsoleOS();
                     ModelosSequenciais.main(new String[]{});
                     break;
                 case 2:
                     System.out.println("| >> Funcionalidade Paralela ainda não implementada.     |");
                     break;
                 case 3:
+                    ConsoleUtil.clearConsoleOS();
                     ClienteRMI.main(new String[]{});
                     break;
                 case 4:

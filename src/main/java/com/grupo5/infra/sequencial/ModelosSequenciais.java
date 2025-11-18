@@ -36,30 +36,11 @@ import com.grupo5.domain.equacoes.SisEquacoes;
  */
 
 public class ModelosSequenciais {
-    
-    public static void clearConsoleOS() {
-        try {
-            final String os = System.getProperty("os.name");
-
-            if (os.contains("Windows")) {
-                // Executa "cmd /c cls" no Windows
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            } else {
-                // Executa "clear" no Linux/Mac
-                new ProcessBuilder("clear").inheritIO().start().waitFor();
-            }
-        } catch (final IOException | InterruptedException e) {
-            e.printStackTrace(); 
-        }
-    }
 
     private static void simulacaoSIR(){
         
         Scanner scanner = new Scanner(System.in);
-        
-        // Limpa o terminal com base no console
-        clearConsoleOS();
-        
+
         System.out.println("|========================================================|");
         System.out.println("|                SIMULAÇÃO SIR - Parâmetros              |");
         System.out.println("|--------------------------------------------------------|");
@@ -159,9 +140,6 @@ public class ModelosSequenciais {
     private static void simulacaoSIS(){
         
         Scanner scanner = new Scanner(System.in);
-        
-        // Limpa o terminal com base no console
-        clearConsoleOS();
         
         System.out.println("|========================================================|");
         System.out.println("|                SIMULAÇÃO SIS - Parâmetros              |");
