@@ -1,4 +1,4 @@
-package com.pauloandre7;
+package com.grupo5;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
