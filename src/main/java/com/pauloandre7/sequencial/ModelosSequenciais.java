@@ -22,6 +22,11 @@ import com.pauloandre7.equacoes.SisEquacoes;
 /**
  * @author pauloandre7
  * 
+ * Fonte da Solução Sequencial (Modelo Matemático e Solver):
+ * Utiliza o modelo SIR/SIS clássico de epidemiologia e o solver de EDOs da biblioteca Apache Commons Math.
+ * A implementação do modelo matemático é baseada em referências da literatura (ex: Kermack-McKendrick, 1927).
+ * O código foi adaptado para a disciplina de Sistemas Distribuídos.
+ * 
  * O modelo SIR é para analisar o comportamento de uma epidemia ao longo de um
  * tempo definido pelo analisador. Esse modelo é usado para doenças que só podem
  * ser adquiridas (não sei se é a melhor palavra) uma vez por pessoa.
@@ -259,7 +264,7 @@ public class ModelosSequenciais {
             System.out.println("|========================================================|");
             System.out.println("| [1] Modelo SIR                                         |");
             System.out.println("| [2] Modelo SIS                                         |");
-            System.out.println("| [0] SAIR                                               |");
+            System.out.println("| [0] VOLTAR ao Menu Principal                           |");
             System.out.println("|========================================================|");
             System.out.print("| Escolha: ");
             // Recebe a escolha do usuário
@@ -273,7 +278,7 @@ public class ModelosSequenciais {
                     simulacaoSIS();
                     break;
                 case 0:
-                    System.out.println("| >> VOLTE SEMPRE!                                       |");
+                    System.out.println("| >> Voltando ao Menu Principal...                       |");
                     System.out.println("|--------------------------------------------------------|");
                     break;
                 default:
