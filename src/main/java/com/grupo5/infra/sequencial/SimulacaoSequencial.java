@@ -35,7 +35,7 @@ import com.grupo5.domain.equacoes.SisEquacoes;
  * 
  */
 
-public class ModelosSequenciais {
+public class SimulacaoSequencial {
 
     private static void simulacaoSIR(){
         
