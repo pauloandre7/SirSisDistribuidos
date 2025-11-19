@@ -63,7 +63,7 @@ public class SIRColetorDeResultados implements StepHandler{
         rHistorico.add(estadoAtual[2]);
 
         // Só para acompanhar:
-        System.out.printf("| Tempo: %.2f, Infectados: %.2f%n", t, estadoAtual[1]);
+        //System.out.printf("| Tempo: %.2f, Infectados: %.2f%n", t, estadoAtual[1]);
     }
     
     // Getters (retornam cópias)
