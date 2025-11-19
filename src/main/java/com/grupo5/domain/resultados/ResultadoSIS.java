@@ -9,8 +9,8 @@ import java.util.List;
  */
 public class ResultadoSIS extends Resultado {
 
-    public ResultadoSIS(List<Double> tempos, List<Double> sucetiveisHistorico, List<Double> infectadosHistorico) {
-        super(tempos, sucetiveisHistorico, infectadosHistorico);
+    public ResultadoSIS(double popTotal, double taxaContagio, double taxaRecuperacao, List<Double> tempos, List<Double> sucetiveisHistorico, List<Double> infectadosHistorico) {
+        super(popTotal, taxaContagio, taxaRecuperacao, tempos, sucetiveisHistorico, infectadosHistorico);
     }
     
 }

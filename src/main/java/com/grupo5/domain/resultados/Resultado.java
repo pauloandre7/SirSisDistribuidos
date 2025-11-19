@@ -1,5 +1,6 @@
 package com.grupo5.domain.resultados;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,14 +9,25 @@ import java.util.List;
  * Classe modelo para armazenar o resultado das simulacoes e, com isso, permitir que o usuário consiga
  * realizar várias ao mesmo tempo e recuperar os detalhes de cada uma.
  */
-public class Resultado {
-    // atributos
+public class Resultado implements Serializable{
+    // Só pra respeitar a boa prática de guardar a versão para serialização
+    private static final long serialVersionUID = 1L;
+
+    // atributos de parametros da simulacao
+    private double popTotal;
+    private double taxaContagio;
+    private double taxaRecuperacao;
+
+    // atributos de resultados
     private List<Double> tempos;
     private List<Double> sucetiveisHistorico;
     private List<Double> infectadosHistorico;
 
     // construtor
-    public Resultado(List<Double> tempos, List<Double> sucetiveisHistorico, List<Double> infectadosHistorico){
+    public Resultado(double popTotal, double taxaContagio, double taxaRecuperacao, List<Double> tempos, List<Double> sucetiveisHistorico, List<Double> infectadosHistorico){
+        this.popTotal = popTotal;
+        this.taxaContagio = taxaContagio;
+        this.taxaRecuperacao = taxaRecuperacao;
         this.tempos = tempos;
         this.sucetiveisHistorico = sucetiveisHistorico;
         this.infectadosHistorico = infectadosHistorico;
@@ -34,6 +46,18 @@ public class Resultado {
         return infectadosHistorico;
     }
 
+    public double getPopTotal(){
+        return popTotal;
+    }
+
+    public double getTaxaContagio(){
+        return taxaContagio;
+    }
+
+    public double getTaxaRecuperacao(){
+        return taxaRecuperacao;
+    }
+
     public void setTempos(List<Double> tempos){
         this.tempos = tempos;
     }
@@ -44,5 +68,17 @@ public class Resultado {
 
     public void setInfectadosHistorico(List<Double> infectadosHistorico){
         this.infectadosHistorico = infectadosHistorico;
+    }
+
+    public void setPopTotal(double popTotal){
+        this.popTotal = popTotal;
+    }
+
+    public void setTaxaContagio(double taxaContagio){
+        this.taxaContagio = taxaContagio;
+    }
+
+    public void setTaxaRecuperacao(double taxaRecuperacao){
+        this.taxaRecuperacao = taxaRecuperacao;
     }
 }

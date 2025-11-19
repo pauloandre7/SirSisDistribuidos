@@ -11,9 +11,9 @@ public class ResultadoSIR extends Resultado{
 
     private List<Double> recuperadosHistorico;
 
-    public ResultadoSIR(List<Double> tempos, List<Double> sucetiveisHistorico, List<Double> infectadosHistorico, List<Double> recuperadosHistorico) {
+    public ResultadoSIR(double popTotal, double taxaContagio, double taxaRecuperacao, List<Double> tempos, List<Double> sucetiveisHistorico, List<Double> infectadosHistorico, List<Double> recuperadosHistorico) {
         // manda os atributos para a classe mãe
-        super(tempos, sucetiveisHistorico, infectadosHistorico);
+        super(popTotal, taxaContagio, taxaRecuperacao, tempos, sucetiveisHistorico, infectadosHistorico);
         
         this.recuperadosHistorico = recuperadosHistorico;
     }
