@@ -3,7 +3,7 @@ package com.grupo5;
 import java.util.Scanner;
 
 import com.grupo5.infra.distribuido.ClienteRMI;
-import com.grupo5.infra.sequencial.ModelosSequenciais;
+import com.grupo5.infra.sequencial.SimulacaoSequencial;
 import com.grupo5.util.ConsoleUtil;
 
 /**
@@ -42,7 +42,7 @@ public class App
             switch (escolha) {
                 case 1:
                     ConsoleUtil.clearConsoleOS();
-                    ModelosSequenciais.main(new String[]{});
+                    SimulacaoSequencial.main(new String[]{});
                     break;
                 case 2:
                     System.out.println("| >> Funcionalidade Paralela ainda não implementada.     |");

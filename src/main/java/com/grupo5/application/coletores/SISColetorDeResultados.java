@@ -59,7 +59,7 @@ public class SISColetorDeResultados implements StepHandler{
         iHistorico.add(estadoAtual[1]);
 
         // Só para acompanhar:
-        System.out.printf("| Tempo: %.2f, Infectados: %.2f%n", t, estadoAtual[1]);
+        //System.out.printf("| Tempo: %.2f, Infectados: %.2f%n", t, estadoAtual[1]);
     }
     
     // Getters (retornam cópias)
