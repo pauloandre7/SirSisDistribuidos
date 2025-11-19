@@ -1,5 +1,8 @@
 package com.grupo5.application;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.math3.exception.NumberIsTooSmallException;
 import org.apache.commons.math3.ode.FirstOrderDifferentialEquations;
 import org.apache.commons.math3.ode.FirstOrderIntegrator;
@@ -70,5 +73,77 @@ public class SimulacaoSIReSIS {
             
         // Cria o objeto de resultado com tudo que o coletor armazenou durante a simulação.
         return new ResultadoSIS(coletor.getTempos(), coletor.getSHistorico(), coletor.getIHistorico());
+    }
+    
+    public List<ResultadoSIR> simularMultiplosModelosSIR(double popTotal, double infectadosInicio, 
+        double taxaContagioLimite, double taxaRecuperacaoLimite, double tempoInicial, double tempoFinal, 
+        double diferencaTaxaContagio, double diferencaTaxaRecuperacao){
+        
+        List<ResultadoSIR> resultadosSIR = new ArrayList<>();
+
+        // Variaveis que serão incrementadas a cada ciclo. Começa com o valor do incremento.
+        double taxaContagio = diferencaTaxaContagio;
+        double taxaRecuperacao = diferencaTaxaRecuperacao;
+
+        // Variaveis para quebrar o while quando as duas taxas chegarem no seus limites
+        boolean taxaContagioNoLimite = false;
+        boolean taxaRecuperacaoNoLimite = false;
+        
+        while(true){
+            resultadosSIR.add(simularModeloSIR(popTotal, infectadosInicio, taxaContagio, taxaRecuperacao, tempoInicial, tempoFinal));
+            
+            taxaContagio += diferencaTaxaContagio;
+            taxaRecuperacao += diferencaTaxaRecuperacao;
+
+            if(taxaContagio > taxaContagioLimite){
+                taxaContagio = taxaContagioLimite;
+                taxaContagioNoLimite = true;    
+            }
+            if(taxaRecuperacao > taxaRecuperacaoLimite){
+                taxaRecuperacao = taxaRecuperacaoLimite;
+                taxaRecuperacaoNoLimite = true;
+            }
+            
+            if(taxaContagioNoLimite && taxaRecuperacaoNoLimite) {
+                break; 
+            }
+        }
+
+        return resultadosSIR;
+    }
+
+    public List<ResultadoSIS> simularMultiplosModelosSIS(double popTotal, double infectadosInicio, 
+        double taxaContagioLimite, double taxaRecuperacaoLimite, double tempoInicial, double tempoFinal, 
+        double diferencaTaxaContagio, double diferencaTaxaRecuperacao){
+        
+        List<ResultadoSIS> resultadosSIS = new ArrayList<>();
+
+        double taxaContagio = diferencaTaxaContagio;
+        double taxaRecuperacao = diferencaTaxaRecuperacao;
+
+        boolean taxaContagioNoLimite = false;
+        boolean taxaRecuperacaoNoLimite = false;
+        
+        while(true){
+            resultadosSIS.add(simularModeloSIS(popTotal, infectadosInicio, taxaContagio, taxaRecuperacao, tempoInicial, tempoFinal));
+            
+            taxaContagio += diferencaTaxaContagio;
+            taxaRecuperacao += diferencaTaxaRecuperacao;
+
+            if(taxaContagio > taxaContagioLimite){
+                taxaContagio = taxaContagioLimite;
+                taxaContagioNoLimite = true;    
+            }
+            if(taxaRecuperacao > taxaRecuperacaoLimite){
+                taxaRecuperacao = taxaRecuperacaoLimite;
+                taxaRecuperacaoNoLimite = true;
+            }
+            
+            if(taxaContagioNoLimite && taxaRecuperacaoNoLimite) {
+                break; 
+            }
+        }
+
+        return resultadosSIS;
     }
 }
