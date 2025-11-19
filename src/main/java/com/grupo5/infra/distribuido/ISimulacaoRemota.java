@@ -4,6 +4,9 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import com.grupo5.domain.resultados.ResultadoSIR;
+import com.grupo5.domain.resultados.ResultadoSIS;
+
 /**
  * Interface Remota para a Simulação Distribuída dos Modelos SIR/SIS.
  * 
@@ -36,4 +39,20 @@ public interface ISimulacaoRemota extends Remote {
      * @throws RemoteException
      */
     List<List<Double>> simularSIS(double popTotal, double infectadosInicio, double taxaContagio, double taxaRecuperacao, double tempoInicial, double tempoFinal) throws RemoteException;
+    
+    /**
+     * @return lista de Objetos do tipo ResultadoSIR, onde existem os parâmetros necessários para entender o resultado da simulacao
+     * @throws RemoteException
+     */
+    public List<ResultadoSIR> simularMultiplosModelosSIR(double popTotal, double infectadosInicio, 
+        double taxaContagioLimite, double taxaRecuperacaoLimite, double tempoInicial, double tempoFinal, 
+        double diferencaTaxaContagio, double diferencaTaxaRecuperacao)throws RemoteException;
+
+    /**
+     * @return lista de Objetos do tipo ResultadoSIS, onde existem os parâmetros necessários para entender o resultado da simulacao
+     * @throws RemoteException
+     */
+    List<ResultadoSIS> simularMultiplosModelosSIS(double popTotal, double infectadosInicio, 
+        double taxaContagioLimite, double taxaRecuperacaoLimite, double tempoInicial, double tempoFinal, 
+        double diferencaTaxaContagio, double diferencaTaxaRecuperacao)throws RemoteException;
 }
