@@ -7,7 +7,7 @@
   <groupId>com.grupo5</groupId>
   <artifactId>SirSisDistribuidos</artifactId>
   <packaging>jar</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
 
   <name>SirSisDistribuidos</name>
   <url>http://www.exemplo.com</url>
@@ -73,6 +73,29 @@
         </configuration>
       </plugin>
 
+      <!-- Plugin para gerar um JAR do projeto 
+      (precisa rodar o arquivo JAR em máquinas sem maven.) 
+      Comando: java -jar [arquivo.jar]-->
+      <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-shade-plugin</artifactId>
+          <version>3.5.0</version> 
+          <executions>
+              <execution>
+                  <phase>package</phase>
+                  <goals>
+                      <goal>shade</goal>
+                  </goals>
+                  <configuration>
+                      <transformers>
+                          <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                              <mainClass>com.grupo5.App</mainClass> 
+                          </transformer>
+                      </transformers>
+                  </configuration>
+              </execution>
+          </executions>
+      </plugin>
     </plugins>
   </build>
 
