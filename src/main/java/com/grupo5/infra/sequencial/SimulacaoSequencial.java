@@ -12,6 +12,7 @@ import org.knowm.xchart.XYChartBuilder;
 import com.grupo5.application.SimulacaoSIReSIS;
 import com.grupo5.domain.resultados.ResultadoSIR;
 import com.grupo5.domain.resultados.ResultadoSIS;
+import com.grupo5.util.ConsoleUtil;
 import com.grupo5.util.GraficoUtil;
 
 /**
@@ -246,19 +247,9 @@ public class SimulacaoSequencial {
                         taxaRecuperacaoLimite, tempoInicial, tempoFinal, diferencaTaxaContagio, diferencaTaxaRecuperacao);
                     
                 for(ResultadoSIR resultadoSIR : resultadosSIR){
-                    // expõe os resultados no terminal usando o objeto ResultadoSIR.
-                    System.out.println("|--------------------------------------------------------|");
-                    System.out.printf("| >> PARÂMETROS DA SIMULAÇÃO %d: %n", contador);
-                    System.out.printf("|    - População: %.2f \n", popTotal);
-                    System.out.printf("|    - Taxa de Contagio: %.2f \n", taxaContagio);
-                    System.out.printf("|    - Taxa de Recuperação: %.2f \n", taxaRecuperacao);
-                    System.out.printf("| >> RESULTADOS DA SIMULAÇÃO %d: %n", contador);
-                    System.out.printf("|    - DIA %.1f -> S: %.2f, I: %.2f, R: %.2f %n", tempoFinal, 
-                                                                                    resultadoSIR.getSucetiveisHistorico().getLast(),
-                                                                                    resultadoSIR.getInfectadosHistorico().getLast(), 
-                                                                                    resultadoSIR.getRecuperadosHistorico().getLast()
-                    );
-                    
+                    // método que expõe os resultados no terminal usando o objeto ResultadoSIR.
+                    ConsoleUtil.printResutadosSIR(contador, resultadoSIR, tempoFinal);
+                                        
                     // Contadores parecidos com os que estão na classe que realiza simulações
                     // Apenas para informar corretamente as taxas no terminal.
                     taxaContagio += diferencaTaxaContagio;
@@ -304,6 +295,10 @@ public class SimulacaoSequencial {
                         index = scanner.nextInt();
 
                         try{
+                            System.out.println("\n|--------------------------------------------------------|");
+                            System.out.printf("| DETALHES DA SIMULACAO %d \n", index);
+                            ConsoleUtil.printResutadosSIR(index, resultadosSIR.get(index), tempoFinal);
+
                             new GraficoUtil().plotarGraficoSIR(resultadosSIR.get(index));
                         } catch(IndexOutOfBoundsException outofbounds){
                             System.out.println("\n|--------------------------------------------------------|");
@@ -333,17 +328,9 @@ public class SimulacaoSequencial {
 
                 contador = 0;
                 for(ResultadoSIS resultadoSIS : resultadosSIS){
-                    System.out.println("|--------------------------------------------------------|");
-                    System.out.printf("| >> PARÂMETROS DA SIMULAÇÃO %d: %n", contador);
-                    System.out.printf("|    - População: %.2f \n", popTotal);
-                    System.out.printf("|    - Taxa de Contagio: %.2f \n", taxaContagio);
-                    System.out.printf("|    - Taxa de Recuperação: %.2f \n", taxaRecuperacao);
-                    System.out.printf("| >> RESULTADOS DA SIMULAÇÃO %d: %n", contador);
-                    System.out.printf("|    - DIA %.1f -> S: %.2f, I: %.2f %n", tempoFinal, 
-                                                                            resultadoSIS.getSucetiveisHistorico().getLast(),
-                                                                            resultadoSIS.getInfectadosHistorico().getLast()
-                    );
                     
+                    ConsoleUtil.printResutadosSIS(contador, resultadoSIS, tempoFinal);
+                                        
                     // Contadores parecidos com os que estão na classe que realiza simulações
                     // Apenas para informar corretamente as taxas no terminal.
                     taxaContagio += diferencaTaxaContagio;
@@ -390,6 +377,10 @@ public class SimulacaoSequencial {
                         
                         GraficoUtil graficoUtil = new GraficoUtil();
                         try{
+                            System.out.println("\n|--------------------------------------------------------|");
+                            System.out.printf("| DETALHES DA SIMULACAO %d \n", index);
+                            ConsoleUtil.printResutadosSIS(index, resultadosSIS.get(index), tempoFinal);
+
                             graficoUtil.plotarGraficoSIS(resultadosSIS.get(index));
                         } catch(IndexOutOfBoundsException outofbounds){
                             System.out.println("\n|--------------------------------------------------------|");
@@ -412,6 +403,200 @@ public class SimulacaoSequencial {
             }
         }
     }
+    
+    private static void simulacaoMultiplaPadrao(int sirOuSis){
+        
+        double popTotal = 1000000.0;
+        
+        double infectadosInicio = 100.0;
+
+        double taxaContagioLimite = 1.0;
+
+        double taxaRecuperacaoLimite = 0.5;
+
+        double tempoInicial = 0;
+
+        double tempoFinal = 360;
+
+        // Essa diferença garante que o incremento demore 100 passos para essa taxa.
+        double diferencaTaxaContagio = 0.01;
+        // Essa diferença garante que o incremento demore 50 passos para essa taxa.
+        double diferencaTaxaRecuperacao = 0.01;
+
+        System.out.println("\n| >> INICIANDO SIMULAÇÃO");
+        long cronometroInicio = System.currentTimeMillis();
+
+        // Variaveis que serão incrementadas a cada ciclo. Começa com o valor do incremento.
+        double taxaContagio = diferencaTaxaContagio;
+        double taxaRecuperacao = diferencaTaxaRecuperacao;
+        
+        int contador = 0;
+
+        if(sirOuSis == 5){
+            SimulacaoSIReSIS simulacoes = new SimulacaoSIReSIS();
+        
+            try{
+                // Adiciona o resultado da simulação na lista
+                List<ResultadoSIR> resultadosSIR = simulacoes.simularMultiplosModelosSIR(popTotal, infectadosInicio, taxaContagioLimite, 
+                        taxaRecuperacaoLimite, tempoInicial, tempoFinal, diferencaTaxaContagio, diferencaTaxaRecuperacao);
+                    
+                for(ResultadoSIR resultadoSIR : resultadosSIR){
+                    
+                    ConsoleUtil.printResutadosSIR(contador, resultadoSIR, tempoFinal);
+                    
+                    // Contadores parecidos com os que estão na classe que realiza simulações
+                    // Apenas para informar corretamente as taxas no terminal.
+                    // Lógica de contador para incrementar todas combinações de taxas possíveis
+                    if ((taxaContagio + diferencaTaxaContagio) <= taxaContagioLimite) {
+                        taxaContagio += diferencaTaxaContagio;
+                    } 
+                    else if ((taxaRecuperacao + diferencaTaxaRecuperacao) <= taxaRecuperacaoLimite) {
+                        taxaContagio = diferencaTaxaContagio; 
+                        taxaRecuperacao += diferencaTaxaRecuperacao;
+                    }
+                                        
+                    contador++;
+                }
+                // finaliza a cronometragem logo após a simulação e guarda o tempo de execucao
+                long cronometroFinal = System.currentTimeMillis();
+                long tempoExecucao = cronometroFinal - cronometroInicio; 
+                System.out.println("|--------------------------------------------------------|");
+                System.out.printf("| >> TEMPO DE EXECUÇÃO TOTAL: %d ms. %n", tempoExecucao);
+
+                boolean desejaVerGrafico = true;
+
+                // reseta o contador
+                contador = 0;
+                
+                while(desejaVerGrafico){
+                    Scanner scanner = new Scanner(System.in);
+
+                    System.out.println("|--------------------------------------------------------|");
+                    if (contador == 0){
+                        System.out.printf("| >> DESEJA VER O GRÁFICO DE ALGUMA SIMULAÇÃO (s/n)? ");
+                    } else {
+                        System.out.printf("| >> DESEJA VER O GRÁFICO DE OUTRA SIMULAÇÃO (s/n)? ");
+                    }
+                    String resp = scanner.nextLine();
+                    
+                    // Se a resposta for 'n', então...
+                    if (resp.toLowerCase().equals("n")) desejaVerGrafico = false;
+
+                    if(desejaVerGrafico){
+                        int index = 0;
+                        System.out.println("\n|--------------------------------------------------------|");
+                        System.out.printf("| >> Index da simulação: ");
+                        index = scanner.nextInt();
+
+                        try{
+                            System.out.println("\n|--------------------------------------------------------|");
+                            System.out.printf("| DETALHES DA SIMULACAO %d \n", index);
+                            ConsoleUtil.printResutadosSIR(index, resultadosSIR.get(index), tempoFinal);
+
+                            new GraficoUtil().plotarGraficoSIR(resultadosSIR.get(index));
+                        } catch(IndexOutOfBoundsException outofbounds){
+                            System.out.println("\n|--------------------------------------------------------|");
+                            System.out.println("| >> INDEX INCORRETO! Tente novamente ");
+                        }
+                    }
+
+                    contador++;
+                }
+
+            } catch(NumberIsTooSmallException numberExc){
+                System.out.println("|-----------------------------------------------|");
+                System.out.println("| >> A taxa de contágio informada é muito alta. |");
+                System.out.println("|-----------------------------------------------|");
+                numberExc.printStackTrace();
+            } catch (Exception e) {
+                System.out.println("|-----------------------------------------------|");
+                System.out.println("|>> Ocorreu um erro inesperado: " + e.getMessage());
+                System.out.println("|-----------------------------------------------|");
+            }
+        } else {
+            SimulacaoSIReSIS simulacoes = new SimulacaoSIReSIS();
+        
+            try{
+                List<ResultadoSIS> resultadosSIS = simulacoes.simularMultiplosModelosSIS(popTotal, infectadosInicio, taxaContagioLimite, 
+                    taxaRecuperacaoLimite, tempoInicial, tempoFinal, diferencaTaxaContagio, diferencaTaxaRecuperacao);
+
+                contador = 0;
+                for(ResultadoSIS resultadoSIS : resultadosSIS){
+                    
+                    ConsoleUtil.printResutadosSIS(contador, resultadoSIS, tempoFinal);
+                    
+                    // Contadores parecidos com os que estão na classe que realiza simulações
+                    // Apenas para informar corretamente as taxas no terminal.
+                    taxaContagio += diferencaTaxaContagio;
+                    taxaRecuperacao += diferencaTaxaRecuperacao;
+
+                    if(taxaContagio > taxaContagioLimite){
+                        taxaContagio = taxaContagioLimite;
+                    }
+                    if(taxaRecuperacao > taxaRecuperacaoLimite){
+                        taxaRecuperacao = taxaRecuperacaoLimite;
+                    }
+                    
+                    contador++;
+                }
+                
+                long cronometroFinal = System.currentTimeMillis();
+                long tempoExecucao = cronometroFinal - cronometroInicio; 
+                System.out.println("|--------------------------------------------------------|");
+                System.out.printf("| >> TEMPO DE EXECUÇÃO TOTAL: %d ms. %n", tempoExecucao);
+                
+                boolean desejaVerGrafico = true;
+
+                contador = 0;
+                while(desejaVerGrafico){
+                    Scanner scanner = new Scanner(System.in);
+
+                    System.out.println("|--------------------------------------------------------|");
+                    if (contador == 0){
+                        System.out.print("| >> DESEJA VER O GRÁFICO DE ALGUMA SIMULAÇÃO (s/n)? ");
+                    } else {
+                        System.out.print("| >> DESEJA VER O GRÁFICO DE OUTRA SIMULAÇÃO (s/n)? ");
+                    }
+                    String resp = scanner.nextLine();
+                    
+                    // Se a resposta for 'n', então...
+                    if (resp.toLowerCase().equals("n")) desejaVerGrafico = false;
+
+                    if(desejaVerGrafico){
+                        int index = 0;
+                        System.out.println("\n|--------------------------------------------------------|");
+                        System.out.print("| >> Index da simulação: ");
+                        index = scanner.nextInt();
+
+
+                        try{
+                            System.out.println("\n|--------------------------------------------------------|");
+                            System.out.printf("| DETALHES DA SIMULACAO %d \n", index);
+                            ConsoleUtil.printResutadosSIS(index, resultadosSIS.get(index), tempoFinal);
+
+                            new GraficoUtil().plotarGraficoSIS(resultadosSIS.get(index));
+                        } catch(IndexOutOfBoundsException outofbounds){
+                            System.out.println("\n|--------------------------------------------------------|");
+                            System.out.println("| >> INDEX INCORRETO! Tente novamente ");
+                        }
+                    }
+
+                    contador++;
+                }
+
+            } catch(NumberIsTooSmallException numberExc){
+                System.out.println("|-----------------------------------------------|");
+                System.out.println("| >> A taxa de contágio informada é muito alta. |");
+                System.out.println("|-----------------------------------------------|");
+                numberExc.printStackTrace();
+            } catch (Exception e) {
+                System.out.println("|-----------------------------------------------|");
+                System.out.println("|>> Ocorreu um erro inesperado: " + e.getMessage());
+                System.out.println("|-----------------------------------------------|");
+            }
+        }
+    }
+
     public static void main(String[] args) {
         
         // Scanner para ler as entradas do sistema (system.in)
@@ -422,10 +607,12 @@ public class SimulacaoSequencial {
             System.out.println("|========================================================|");
             System.out.println("|            Simulação SIR e SIS - SEQUENCIAL            |");
             System.out.println("|========================================================|");
-            System.out.println("| [1] Modelo SIR                                         |");
-            System.out.println("| [2] Modelo SIS                                         |");
-            System.out.println("| [3] Simulações Múltiplas - Modelo SIR                  |");
-            System.out.println("| [4] Simulações Múltiplas - Modelo SIS                  |");
+            System.out.println("| [1] Modelo SIR - Simulação SIMPLES                     |");
+            System.out.println("| [2] Modelo SIS - Simulação SIMPLES                     |");
+            System.out.println("| [3] Modelo SIR - Simulações MÚLTIPLAS                  |");
+            System.out.println("| [4] Modelo SIS - Simulações MÚLTIPLAS                  |");
+            System.out.println("| [5] Modelo SIR - TESTE PADRÃO de 5 mil simulações      |");
+            System.out.println("| [6] Modelo SIS - TESTE PADRÃO de 5 mil simulações      |");
             System.out.println("| [0] VOLTAR ao Menu Principal                           |");
             System.out.println("|========================================================|");
             System.out.print("| Escolha: ");
@@ -444,6 +631,12 @@ public class SimulacaoSequencial {
                     break;
                 case 4:
                     simulacaoMultipla(4);
+                    break;
+                case 5:
+                    simulacaoMultiplaPadrao(5);
+                    break;
+                case 6:
+                    simulacaoMultiplaPadrao(6);
                     break;
                 case 0:
                     System.out.println("| >> Voltando ao Menu Principal...                       |");

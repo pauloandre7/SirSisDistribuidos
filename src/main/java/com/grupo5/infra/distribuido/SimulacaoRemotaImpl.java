@@ -6,14 +6,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.math3.exception.NumberIsTooSmallException;
 import org.apache.commons.math3.ode.FirstOrderDifferentialEquations;
 import org.apache.commons.math3.ode.FirstOrderIntegrator;
 import org.apache.commons.math3.ode.nonstiff.DormandPrince54Integrator;
 
+import com.grupo5.application.SimulacaoSIReSIS;
 import com.grupo5.application.coletores.SIRColetorDeResultados;
 import com.grupo5.application.coletores.SISColetorDeResultados;
 import com.grupo5.domain.equacoes.SirEquacoes;
 import com.grupo5.domain.equacoes.SisEquacoes;
+import com.grupo5.domain.resultados.ResultadoSIR;
+import com.grupo5.domain.resultados.ResultadoSIS;
 
 /**
  * Implementação da Interface Remota ISimulacaoRemota.
@@ -125,5 +129,70 @@ public class SimulacaoRemotaImpl extends UnicastRemoteObject implements ISimulac
         resultados.add(infectadosHistorico);
         
         return resultados;
+    }
+
+    @Override
+    public List<ResultadoSIR> simularMultiplosModelosSIR(double popTotal, double infectadosInicio, 
+        double taxaContagioLimite, double taxaRecuperacaoLimite, double tempoInicial, double tempoFinal, 
+        double diferencaTaxaContagio, double diferencaTaxaRecuperacao){
+        
+        List<ResultadoSIR> resultadosSIR = new ArrayList<>();
+
+        // Calcula o numero de passos em inteiro usando a divisão
+        int passosBeta = (int) Math.round((taxaContagioLimite / diferencaTaxaContagio)); // Ex: 1.0 / 0.01 = 100
+        int passosGamma = (int) Math.round((taxaRecuperacaoLimite / diferencaTaxaRecuperacao)); // Ex: 0.5 / 0.01 = 50
+
+        // Loop para a Taxa de Recuperação
+        for (int j = 1; j <= passosGamma; j++) {
+            
+            // Calcula o valor real da taxaRecuperacao: (Índice * Diferença)
+            double taxaRecuperacao = j * diferencaTaxaRecuperacao;
+
+            // Loop para a Taxa de Contágio
+            for (int i = 1; i <= passosBeta; i++) {
+                
+                // Calcula o valor real da taxaContagio: (Índice * Diferença)
+                double taxaContagio = i * diferencaTaxaContagio;
+
+                // O try é apenas para pegar as exceções que podem surgir caso o usuário coloque números muito pequenos
+                try {
+                    resultadosSIR.add(new SimulacaoSIReSIS().simularModeloSIR(popTotal, infectadosInicio, taxaContagio, taxaRecuperacao, tempoInicial, tempoFinal));
+                } catch (NumberIsTooSmallException e) {
+                    // Propagação de exceção se necessário, mas o loop continua
+                    continue; 
+                }
+            }
+        }
+
+        return resultadosSIR;
+    }
+
+    @Override
+    public List<ResultadoSIS> simularMultiplosModelosSIS(double popTotal, double infectadosInicio, 
+        double taxaContagioLimite, double taxaRecuperacaoLimite, double tempoInicial, double tempoFinal, 
+        double diferencaTaxaContagio, double diferencaTaxaRecuperacao){
+
+        List<ResultadoSIS> resultadosSIS = new ArrayList<>();
+
+        int passosBeta = (int) Math.round((taxaContagioLimite / diferencaTaxaContagio)); // Ex: 1.0 / 0.01 = 100
+        int passosGamma = (int) Math.round((taxaRecuperacaoLimite / diferencaTaxaRecuperacao)); // Ex: 0.5 / 0.01 = 50
+
+        for (int j = 1; j <= passosGamma; j++) {
+            
+            double taxaRecuperacao = j * diferencaTaxaRecuperacao;
+
+            for (int i = 1; i <= passosBeta; i++) {
+                
+                double taxaContagio = i * diferencaTaxaContagio;
+
+                try {
+                    resultadosSIS.add(new SimulacaoSIReSIS().simularModeloSIS(popTotal, infectadosInicio, taxaContagio, taxaRecuperacao, tempoInicial, tempoFinal));
+                } catch (NumberIsTooSmallException e) {
+                    continue; 
+                }
+            }
+        }
+
+        return resultadosSIS;
     }
 }

@@ -2,6 +2,9 @@ package com.grupo5.util;
 
 import java.io.IOException;
 
+import com.grupo5.domain.resultados.ResultadoSIR;
+import com.grupo5.domain.resultados.ResultadoSIS;
+
 /**
  * @author pauloandre7
  * 
@@ -26,4 +29,33 @@ public class ConsoleUtil {
             e.printStackTrace(); 
         }
     }
+
+    public static void printResutadosSIR(int index, ResultadoSIR resultadoSIR, double tempoFinal){
+        // expõe os resultados no terminal usando o objeto ResultadoSIR.
+        System.out.println("|--------------------------------------------------------|");
+        System.out.printf("| >> PARÂMETROS DA SIMULAÇÃO %d: %n", index);
+        System.out.printf("|    - População: %.2f \n", resultadoSIR.getPopTotal());
+        System.out.printf("|    - Taxa de Contagio: %.2f \n", resultadoSIR.getTaxaContagio());
+        System.out.printf("|    - Taxa de Recuperação: %.2f \n", resultadoSIR.getTaxaRecuperacao());
+        System.out.printf("| >> RESULTADOS DA SIMULAÇÃO %d: %n", index);
+        System.out.printf("|    - DIA %.1f -> S: %.2f, I: %.2f, R: %.2f %n", tempoFinal, 
+                                                                        resultadoSIR.getSucetiveisHistorico().getLast(),
+                                                                        resultadoSIR.getInfectadosHistorico().getLast(), 
+                                                                        resultadoSIR.getRecuperadosHistorico().getLast()
+        );
+    }
+
+    public static void printResutadosSIS(int index, ResultadoSIS resultadoSIS, double tempoFinal){
+        // expõe os resultados no terminal usando o objeto ResultadoSIR.
+        System.out.println("|--------------------------------------------------------|");
+        System.out.printf("| >> PARÂMETROS DA SIMULAÇÃO %d: %n", index);
+        System.out.printf("|    - População: %.2f \n", resultadoSIS.getPopTotal());
+        System.out.printf("|    - Taxa de Contagio: %.2f \n", resultadoSIS.getTaxaContagio());
+        System.out.printf("|    - Taxa de Recuperação: %.2f \n", resultadoSIS.getTaxaRecuperacao());
+        System.out.printf("| >> RESULTADOS DA SIMULAÇÃO %d: %n", index);
+        System.out.printf("|    - DIA %.1f -> S: %.2f, I: %.2f %n", tempoFinal, 
+                                                                resultadoSIS.getSucetiveisHistorico().getLast(),
+                                                                resultadoSIS.getInfectadosHistorico().getLast()
+        );
+}
 }

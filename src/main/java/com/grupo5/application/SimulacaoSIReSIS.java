@@ -46,7 +46,7 @@ public class SimulacaoSIReSIS {
         solver.integrate(equacoesSir, tempoInicial, estadoInicial, tempoFinal, estadoFinal);
         
         // retorna a instancia de um modelo de Resultados iniciada com os dados que o coletor armazenou durante a simulacao
-        return new ResultadoSIR(coletor.getTempos(), coletor.getSHistorico(), coletor.getIHistorico(), coletor.getRHistorico());
+        return new ResultadoSIR(popTotal, taxaContagio, taxaRecuperacao, coletor.getTempos(), coletor.getSHistorico(), coletor.getIHistorico(), coletor.getRHistorico());
     }
 
     public ResultadoSIS simularModeloSIS(double popTotal, double infectadosInicio, double taxaContagio, double taxaRecuperacao, double tempoInicial, double tempoFinal){
@@ -72,7 +72,7 @@ public class SimulacaoSIReSIS {
         solver.integrate(equacoesSis, tempoInicial, estadoInicial, tempoFinal, estadoFinal);
             
         // Cria o objeto de resultado com tudo que o coletor armazenou durante a simulação.
-        return new ResultadoSIS(coletor.getTempos(), coletor.getSHistorico(), coletor.getIHistorico());
+        return new ResultadoSIS(popTotal, taxaContagio, taxaRecuperacao, coletor.getTempos(), coletor.getSHistorico(), coletor.getIHistorico());
     }
     
     public List<ResultadoSIR> simularMultiplosModelosSIR(double popTotal, double infectadosInicio, 
@@ -81,31 +81,29 @@ public class SimulacaoSIReSIS {
         
         List<ResultadoSIR> resultadosSIR = new ArrayList<>();
 
-        // Variaveis que serão incrementadas a cada ciclo. Começa com o valor do incremento.
-        double taxaContagio = diferencaTaxaContagio;
-        double taxaRecuperacao = diferencaTaxaRecuperacao;
+        // Calcula o numero de passos em inteiro usando a divisão
+        int passosBeta = (int) Math.round((taxaContagioLimite / diferencaTaxaContagio)); // Ex: 1.0 / 0.01 = 100
+        int passosGamma = (int) Math.round((taxaRecuperacaoLimite / diferencaTaxaRecuperacao)); // Ex: 0.5 / 0.01 = 50
 
-        // Variaveis para quebrar o while quando as duas taxas chegarem no seus limites
-        boolean taxaContagioNoLimite = false;
-        boolean taxaRecuperacaoNoLimite = false;
-        
-        while(true){
-            resultadosSIR.add(simularModeloSIR(popTotal, infectadosInicio, taxaContagio, taxaRecuperacao, tempoInicial, tempoFinal));
+        // Loop para a Taxa de Recuperação
+        for (int j = 1; j <= passosGamma; j++) {
             
-            taxaContagio += diferencaTaxaContagio;
-            taxaRecuperacao += diferencaTaxaRecuperacao;
+            // Calcula o valor real da taxaRecuperacao: (Índice * Diferença)
+            double taxaRecuperacao = j * diferencaTaxaRecuperacao;
 
-            if(taxaContagio > taxaContagioLimite){
-                taxaContagio = taxaContagioLimite;
-                taxaContagioNoLimite = true;    
-            }
-            if(taxaRecuperacao > taxaRecuperacaoLimite){
-                taxaRecuperacao = taxaRecuperacaoLimite;
-                taxaRecuperacaoNoLimite = true;
-            }
-            
-            if(taxaContagioNoLimite && taxaRecuperacaoNoLimite) {
-                break; 
+            // Loop para a Taxa de Contágio
+            for (int i = 1; i <= passosBeta; i++) {
+                
+                // Calcula o valor real da taxaContagio: (Índice * Diferença)
+                double taxaContagio = i * diferencaTaxaContagio;
+
+                // O try é apenas para pegar as exceções que podem surgir caso o usuário coloque números muito pequenos
+                try {
+                    resultadosSIR.add(simularModeloSIR(popTotal, infectadosInicio, taxaContagio, taxaRecuperacao, tempoInicial, tempoFinal));
+                } catch (NumberIsTooSmallException e) {
+                    // Propagação de exceção se necessário, mas o loop continua
+                    continue; 
+                }
             }
         }
 
@@ -118,29 +116,22 @@ public class SimulacaoSIReSIS {
         
         List<ResultadoSIS> resultadosSIS = new ArrayList<>();
 
-        double taxaContagio = diferencaTaxaContagio;
-        double taxaRecuperacao = diferencaTaxaRecuperacao;
+        int passosBeta = (int) Math.round((taxaContagioLimite / diferencaTaxaContagio)); // Ex: 1.0 / 0.01 = 100
+        int passosGamma = (int) Math.round((taxaRecuperacaoLimite / diferencaTaxaRecuperacao)); // Ex: 0.5 / 0.01 = 50
 
-        boolean taxaContagioNoLimite = false;
-        boolean taxaRecuperacaoNoLimite = false;
-        
-        while(true){
-            resultadosSIS.add(simularModeloSIS(popTotal, infectadosInicio, taxaContagio, taxaRecuperacao, tempoInicial, tempoFinal));
+        for (int j = 1; j <= passosGamma; j++) {
             
-            taxaContagio += diferencaTaxaContagio;
-            taxaRecuperacao += diferencaTaxaRecuperacao;
+            double taxaRecuperacao = j * diferencaTaxaRecuperacao;
 
-            if(taxaContagio > taxaContagioLimite){
-                taxaContagio = taxaContagioLimite;
-                taxaContagioNoLimite = true;    
-            }
-            if(taxaRecuperacao > taxaRecuperacaoLimite){
-                taxaRecuperacao = taxaRecuperacaoLimite;
-                taxaRecuperacaoNoLimite = true;
-            }
-            
-            if(taxaContagioNoLimite && taxaRecuperacaoNoLimite) {
-                break; 
+            for (int i = 1; i <= passosBeta; i++) {
+                
+                double taxaContagio = i * diferencaTaxaContagio;
+
+                try {
+                    resultadosSIS.add(simularModeloSIS(popTotal, infectadosInicio, taxaContagio, taxaRecuperacao, tempoInicial, tempoFinal));
+                } catch (NumberIsTooSmallException e) {
+                    continue; 
+                }
             }
         }
 
