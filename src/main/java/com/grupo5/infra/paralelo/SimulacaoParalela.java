@@ -68,7 +68,6 @@ public class SimulacaoParalela {
             
             System.out.println("\n| >> INICIANDO SIMULAÇÃO");
             long cronometroInicio = System.currentTimeMillis();
-            System.out.println("| >> NÚMERO DE THREADS: "+ numThreads);
 
             // Distribui as tarefas para as threads executarem;
             List<Future<Resultado>> promessas = executor.invokeAll(listaDeTarefas);
@@ -93,6 +92,7 @@ public class SimulacaoParalela {
 
             System.out.println("|--------------------------------------------------------|");
             System.out.println("| >> TEMPO DE PROCESSAMENTO PARALELO: "+ (cronometroFim - cronometroInicio) + " ms");
+            System.out.println("| >> NÚMERO DE THREADS: "+ numThreads);
 
             boolean desejaVerGrafico = true;
 
