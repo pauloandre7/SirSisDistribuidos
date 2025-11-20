@@ -3,6 +3,7 @@ package com.grupo5;
 import java.util.Scanner;
 
 import com.grupo5.infra.distribuido.ClienteRMI;
+import com.grupo5.infra.paralelo.SimulacaoParalela;
 import com.grupo5.infra.sequencial.SimulacaoSequencial;
 import com.grupo5.util.ConsoleUtil;
 
@@ -21,8 +22,8 @@ public class App
             System.out.println("|=====================================================================|");
             System.out.println("|                  SirSisDistribuidos - Menu Principal                |");
             System.out.println("|=====================================================================|");
-            System.out.println("| [1] Simulação Sequencial (SIR/SIS)                                  |");
-            System.out.println("| [2] Simulação Paralela (NÃO IMPLEMENTADO)                           |");
+            System.out.println("| [1] Simulação Sequencial                                            |");
+            System.out.println("| [2] Simulação Paralela                                              |");
             System.out.println("| [3] Simulação Distribuída (Cliente RMI)                             |");
             System.out.println("| [4] Iniciar Servidor RMI (A ser executado em outra máquina/terminal)|");
             System.out.println("| [0] SAIR                                                            |");
@@ -45,7 +46,7 @@ public class App
                     SimulacaoSequencial.main(new String[]{});
                     break;
                 case 2:
-                    System.out.println("| >> Funcionalidade Paralela ainda não implementada.     |");
+                    SimulacaoParalela.main(new String[]{});
                     break;
                 case 3:
                     ConsoleUtil.clearConsoleOS();
