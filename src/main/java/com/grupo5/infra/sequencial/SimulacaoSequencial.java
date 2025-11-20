@@ -1,13 +1,9 @@
 package com.grupo5.infra.sequencial;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import org.apache.commons.math3.exception.NumberIsTooSmallException;
-import org.knowm.xchart.SwingWrapper;
-import org.knowm.xchart.XYChart;
-import org.knowm.xchart.XYChartBuilder;
 
 import com.grupo5.application.SimulacaoSIReSIS;
 import com.grupo5.domain.resultados.ResultadoSIR;

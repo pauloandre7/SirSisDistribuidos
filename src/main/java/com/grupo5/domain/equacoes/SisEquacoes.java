@@ -1,7 +1,5 @@
 package com.grupo5.domain.equacoes;
 
-import org.apache.commons.math3.exception.DimensionMismatchException;
-import org.apache.commons.math3.exception.MaxCountExceededException;
 import org.apache.commons.math3.ode.FirstOrderDifferentialEquations;
 
 /**
