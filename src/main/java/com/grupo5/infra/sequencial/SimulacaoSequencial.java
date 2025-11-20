@@ -406,7 +406,7 @@ public class SimulacaoSequencial {
         
         double infectadosInicio = 100.0;
 
-        double taxaContagioLimite = 1.0;
+        double taxaContagioLimite = 2.0;
 
         double taxaRecuperacaoLimite = 0.5;
 
@@ -607,8 +607,8 @@ public class SimulacaoSequencial {
             System.out.println("| [2] Modelo SIS - Simulação SIMPLES                     |");
             System.out.println("| [3] Modelo SIR - Simulações MÚLTIPLAS                  |");
             System.out.println("| [4] Modelo SIS - Simulações MÚLTIPLAS                  |");
-            System.out.println("| [5] Modelo SIR - TESTE PADRÃO de 5 mil simulações      |");
-            System.out.println("| [6] Modelo SIS - TESTE PADRÃO de 5 mil simulações      |");
+            System.out.println("| [5] Modelo SIR - TESTE PADRÃO de 10 mil simulações     |");
+            System.out.println("| [6] Modelo SIS - TESTE PADRÃO de 10 mil simulações     |");
             System.out.println("| [0] VOLTAR ao Menu Principal                           |");
             System.out.println("|========================================================|");
             System.out.print("| Escolha: ");

@@ -23,7 +23,7 @@ public class SimulacaoParalela {
         
         double infectadosInicio = 100.0;
 
-        double taxaContagioLimite = 1.0;
+        double taxaContagioLimite = 2.0;
 
         double taxaRecuperacaoLimite = 0.5;
 
@@ -68,6 +68,7 @@ public class SimulacaoParalela {
             
             System.out.println("\n| >> INICIANDO SIMULAÇÃO");
             long cronometroInicio = System.currentTimeMillis();
+            System.out.println("| >> NÚMERO DE THREADS: "+ numThreads);
 
             // Distribui as tarefas para as threads executarem;
             List<Future<Resultado>> promessas = executor.invokeAll(listaDeTarefas);
@@ -161,8 +162,8 @@ public class SimulacaoParalela {
             System.out.println("|========================================================|");
             System.out.println("|             Simulação SIR e SIS - PARALELO             |");
             System.out.println("|========================================================|");
-            System.out.println("| [1] Modelo SIR - 5 mil simulações padrões              |");
-            System.out.println("| [2] Modelo SIS - 5 mil simulações padrões              |");
+            System.out.println("| [1] Modelo SIR - 10 mil simulações padrões             |");
+            System.out.println("| [2] Modelo SIS - 10 mil simulações padrões             |");
             System.out.println("| [0] VOLTAR ao Menu Principal                           |");
             System.out.println("|========================================================|");
             System.out.print("| Escolha: ");

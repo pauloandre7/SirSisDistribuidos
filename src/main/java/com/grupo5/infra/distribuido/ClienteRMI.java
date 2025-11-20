@@ -63,7 +63,7 @@ public class ClienteRMI {
         
         double infectadosInicio = 100.0;
 
-        double taxaContagioLimite = 1.0;
+        double taxaContagioLimite = 2.0;
 
         double taxaRecuperacaoLimite = 0.5;
 
@@ -269,8 +269,8 @@ public class ClienteRMI {
                 System.out.println("|      CLIENTE: Simulação SIR e SIS - DISTRIBUIDA        |");
                 System.out.println("|========================================================|");
                 System.out.println("| [1] Modelo SIR e SIS - Teste simples Padrao            |");
-                System.out.println("| [2] Modelo SIR - TESTE de 5 mil simulações padrões     |");
-                System.out.println("| [3] Modelo SIS - TESTE de 5 mil simulações padrões     |");
+                System.out.println("| [2] Modelo SIR - TESTE de 10 mil simulações padrões    |");
+                System.out.println("| [3] Modelo SIS - TESTE de 10 mil simulações padrões    |");
                 System.out.println("| [0] VOLTAR ao Menu Principal                           |");
                 System.out.println("|========================================================|");
                 System.out.print("| Escolha: ");
