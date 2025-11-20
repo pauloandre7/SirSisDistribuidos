@@ -61,6 +61,7 @@ public class App
                     break;
                 default:
                     System.out.println("| Opção Inválida!");
+                    System.exit(0);
             }
             System.out.println("|---------------------------------------------------------------------|");
         }
